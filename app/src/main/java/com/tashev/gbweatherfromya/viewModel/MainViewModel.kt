@@ -1,21 +1,21 @@
 package com.tashev.gbweatherfromya.viewModel
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import java.lang.Thread.sleep
 
-class MainViewModel(private val liveDataToObserve:MutableLiveData<Any> = MutableLiveData()) : ViewModel() {
+class MainViewModel(private val liveDataToObserve: MutableLiveData<AppState> = MutableLiveData()) :
+    ViewModel() {
 
-    fun getData(): LiveData<Any>{
-        getDataFromLocalSource()
-        return liveDataToObserve
-    }
+    fun getLiveData() = liveDataToObserve
 
-    private fun getDataFromLocalSource(){
-        Thread{
-            sleep(1000)
-            liveDataToObserve.postValue(Any())
+    fun getWeather() = getDataFromRemoteSource()
+
+    private fun getDataFromRemoteSource() {
+        liveDataToObserve.postValue(AppState.Loading)
+        Thread {
+            sleep(2000)
+            liveDataToObserve.postValue(AppState.Success(Any()))
         }.start()
     }
 
