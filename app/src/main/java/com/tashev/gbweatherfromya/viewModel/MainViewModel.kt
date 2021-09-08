@@ -1,14 +1,10 @@
 package com.tashev.gbweatherfromya.viewModel
 
-import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelStore
 import com.tashev.gbweatherfromya.repository.Repository
 import com.tashev.gbweatherfromya.repository.RepositoryImpl
-import java.lang.Exception
 import java.lang.Thread.sleep
-import kotlin.jvm.Throws
 import kotlin.random.Random
 
 class MainViewModel(
@@ -18,15 +14,15 @@ class MainViewModel(
 
     fun getLiveData() = liveDataToObserve
 
-    fun getWeatherFromLocalSource() = getDataFromLocalSource()
+//    fun getWeatherFromLocalSource() = getDataFromLocalSource()  Пока что бесполезна, за этим и закомментирована
     fun getWeatherFromRemoteSource() = getDataFromLocalSource()
 
     private fun getDataFromLocalSource() {
         liveDataToObserve.postValue(AppState.Loading)
-        simulateServerResponce()
+        simulateServerResponse()
     }
 
-    private fun simulateServerResponce() {
+    private fun simulateServerResponse() {
         Thread {
             sleep(2000)
             randomResult()
@@ -37,10 +33,6 @@ class MainViewModel(
         if (Random.nextInt(10) < 4) {
             liveDataToObserve.postValue(AppState.Error(Exception("Не удалось загрузить данные о погоде")))
         } else liveDataToObserve.postValue(AppState.Success(repositoryImpl.getWeatherFromLocalStorage()))
-    }
-
-    override fun onCleared() {
-        super.onCleared()
     }
 
 }
