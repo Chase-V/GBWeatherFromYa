@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import com.tashev.gbweatherfromya.R
+import com.tashev.gbweatherfromya.dataSource.Weather
 import com.tashev.gbweatherfromya.databinding.SomeFragmentBinding
 import com.tashev.gbweatherfromya.viewModel.AppState
 import com.tashev.gbweatherfromya.viewModel.MainViewModel
@@ -28,10 +29,10 @@ class SomeFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = SomeFragmentBinding.inflate(inflater, container, false)
         val view = binding.root
-        return inflater.inflate(R.layout.some_fragment, container, false)
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -46,8 +47,8 @@ class SomeFragment : Fragment() {
 
     private fun initViewModel() {
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        viewModel.getLiveData().observe(viewLifecycleOwner, Observer<AppState> { renderData(it) })
-        viewModel.getWeather()
+        viewModel.getLiveData().observe(viewLifecycleOwner, { renderData(it) })
+        viewModel.getWeatherFromRemoteSource()
     }
 
     private fun renderData(appState: AppState) {
@@ -55,7 +56,7 @@ class SomeFragment : Fragment() {
             is AppState.Success -> {
                 val weatherData = appState.weatherData
                 binding.loadingLayout.visibility = View.GONE
-                Snackbar.make(binding.mainView, "Success", Snackbar.LENGTH_LONG).show()
+                setData(weatherData)
             }
             is AppState.Loading -> {
                 binding.loadingLayout.visibility = View.VISIBLE
@@ -64,9 +65,21 @@ class SomeFragment : Fragment() {
                 binding.loadingLayout.visibility = View.GONE
                 Snackbar
                     .make(binding.mainView, "Error", Snackbar.LENGTH_INDEFINITE)
-                    .setAction("Reload") { viewModel.getWeather() }
+                    .setAction("Reload") { viewModel.getWeatherFromRemoteSource() }
                     .show()
             }
         }
     }
+
+    private fun setData(weatherData: Weather) {
+        binding.cityName.text = weatherData.city.city
+        binding.cityCoordinates.text = String.format(
+            getString(R.string.city_coordinates),
+            weatherData.city.lat.toString(),
+            weatherData.city.lon.toString()
+        )
+        binding.temperatureValue.text = weatherData.temperature.toString()
+        binding.feelsLikeValue.text = weatherData.feelsLike.toString()
+    }
+
 }
