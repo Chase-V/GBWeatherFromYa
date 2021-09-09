@@ -1,7 +1,11 @@
 package com.tashev.gbweatherfromya.dataSource
 
-data class City(
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+data class City (
     val city: String,
     val lat: Double,
     val lon: Double
-)
+): Parcelable

@@ -14,25 +14,28 @@ class MainViewModel(
 
     fun getLiveData() = liveDataToObserve
 
-//    fun getWeatherFromLocalSource() = getDataFromLocalSource()  Пока что бесполезна, за этим и закомментирована
-    fun getWeatherFromRemoteSource() = getDataFromLocalSource()
+    fun getWeatherFromLocalSourceRus() = getDataFromLocalSource(isRussian = true)
+    fun getWeatherFromLocalSourceWorld() = getDataFromLocalSource(isRussian = false)
+//    fun getWeatherFromRemoteSource() = getDataFromLocalSource(isRussian = true)       Пока бесполезен
 
-    private fun getDataFromLocalSource() {
+    private fun getDataFromLocalSource(isRussian: Boolean) {
         liveDataToObserve.postValue(AppState.Loading)
-        simulateServerResponse()
+        simulateServerResponseWithRandomResult(isRussian)
     }
 
-    private fun simulateServerResponse() {
+    private fun simulateServerResponseWithRandomResult(isRussian: Boolean) {
         Thread {
-            sleep(2000)
-            randomResult()
+            sleep(1000)
+            if (Random.nextInt(10) < 1) {
+                liveDataToObserve.postValue(AppState.Error(Exception("Не удалось загрузить данные о погоде")))
+            } else {
+                liveDataToObserve.postValue(
+                    AppState.Success(
+                        if (isRussian) repositoryImpl.getWeatherFromLocalStorageRus()
+                        else repositoryImpl.getWeatherFromLocalStorageWorld()
+                    )
+                )
+            }
         }.start()
     }
-
-    private fun randomResult() {
-        if (Random.nextInt(10) < 4) {
-            liveDataToObserve.postValue(AppState.Error(Exception("Не удалось загрузить данные о погоде")))
-        } else liveDataToObserve.postValue(AppState.Success(repositoryImpl.getWeatherFromLocalStorage()))
-    }
-
 }
