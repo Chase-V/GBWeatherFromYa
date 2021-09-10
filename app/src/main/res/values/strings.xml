@@ -5,7 +5,7 @@
     <string name="feels_like_label">Ощущается как</string>
     <string name="city_coordinates">lt/ln: %s, %s"</string>
     <string name="sunny">Sunny</string>
-    <string name="error">Ошибка</string>
+    <string name="error">Не удалось загрузить данные</string>
     <string name="reload">Перезагрузить</string>
     <string name="flag">Flag</string>
 

@@ -26,7 +26,7 @@ class MainViewModel(
     private fun simulateServerResponseWithRandomResult(isRussian: Boolean) {
         Thread {
             sleep(1000)
-            if (Random.nextInt(10) < 1) {
+            if (Random.nextInt(10) < 2) {
                 liveDataToObserve.postValue(AppState.Error(Exception("Не удалось загрузить данные о погоде")))
             } else {
                 liveDataToObserve.postValue(
