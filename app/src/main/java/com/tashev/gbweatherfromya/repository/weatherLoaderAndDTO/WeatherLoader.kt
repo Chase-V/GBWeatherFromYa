@@ -1,10 +1,9 @@
-package com.tashev.gbweatherfromya.repository
+package com.tashev.gbweatherfromya.repository.weatherLoaderAndDTO
 
 
 import android.os.Handler
 import android.os.Looper
 import com.google.gson.Gson
-import com.tashev.gbweatherfromya.repository.weatherLoaderAndDTO.WeatherDTO
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.URL

@@ -15,8 +15,8 @@ import com.tashev.gbweatherfromya.R
 import com.tashev.gbweatherfromya.dataSource.Weather
 import com.tashev.gbweatherfromya.databinding.DetailedWeatherFragmentBinding
 import com.tashev.gbweatherfromya.repository.weatherLoaderAndDTO.WeatherDTO
-import com.tashev.gbweatherfromya.repository.WeatherLoader
-import com.tashev.gbweatherfromya.repository.WeatherLoaderListener
+import com.tashev.gbweatherfromya.repository.weatherLoaderAndDTO.WeatherLoader
+import com.tashev.gbweatherfromya.repository.weatherLoaderAndDTO.WeatherLoaderListener
 
 class DetailedWeatherFragment : Fragment(), WeatherLoaderListener {
 
@@ -124,6 +124,6 @@ class DetailedWeatherFragment : Fragment(), WeatherLoaderListener {
     }
 
     override fun onFailed(throwable: Throwable) {
-        Snackbar.make(binding.root, getString(R.string.error),Snackbar.LENGTH_INDEFINITE).show()
+        Snackbar.make(binding.root, getString(R.string.error), Snackbar.LENGTH_INDEFINITE).show()
     }
 }
