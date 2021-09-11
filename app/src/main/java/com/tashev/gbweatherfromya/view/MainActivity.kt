@@ -1,8 +1,9 @@
-package com.tashev.gbweatherfromya
+package com.tashev.gbweatherfromya.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.tashev.gbweatherfromya.view.citiesListFragment.CitiesListFragment
+import com.tashev.gbweatherfromya.R
+import com.tashev.gbweatherfromya.view.citiesList.CitiesListFragment
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

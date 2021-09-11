@@ -1,4 +1,4 @@
-package com.tashev.gbweatherfromya.view.citiesListFragment
+package com.tashev.gbweatherfromya.view.citiesList
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +10,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.tashev.gbweatherfromya.R
 import com.tashev.gbweatherfromya.dataSource.Weather
 import com.tashev.gbweatherfromya.databinding.CitiesListFragmentBinding
-import com.tashev.gbweatherfromya.view.DetailedWeatherFragment
+import com.tashev.gbweatherfromya.view.weatherDetails.DetailedWeatherFragment
 import com.tashev.gbweatherfromya.viewModel.AppState
 import com.tashev.gbweatherfromya.viewModel.MainViewModel
 
@@ -83,16 +83,7 @@ class CitiesListFragment : Fragment() {
             }
             is AppState.Error -> {
                 binding.mainFragmentLoadingLayout.visibility = View.GONE
-                Snackbar
-                    .make(
-                        binding.mainFragmentFAB,
-                        getString(R.string.error),
-                        Snackbar.LENGTH_INDEFINITE
-                    )
-                    .setAction(getString(R.string.reload)) {
-                        viewModel.getWeatherFromLocalSourceRus()
-                    }
-                    .show()
+                snackbarWithString(R.string.error, R.string.reload)
             }
         }
     }
@@ -105,5 +96,39 @@ class CitiesListFragment : Fragment() {
         super.onDestroy()
     }
 
+    private fun snackbarWithString(message: String, actionMessage:String) {
+        Snackbar
+            .make(
+                binding.root,
+                message,
+                Snackbar.LENGTH_INDEFINITE
+            )
+            .setAction(actionMessage) {
+                viewModel.getWeatherFromLocalSourceRus()
+            }
+            .show()
+    }
 
+    private fun snackbarWithString(message: Int, actionMessage:Int) {
+        Snackbar
+            .make(
+                binding.root,
+                message,
+                Snackbar.LENGTH_INDEFINITE
+            )
+            .setAction(actionMessage) {
+                viewModel.getWeatherFromLocalSourceRus()
+            }
+            .show()
+    }
+
+    private fun snackBarWithoutAction(string: Int) {
+        Snackbar
+            .make(
+                binding.root,
+                getString(string),
+                Snackbar.LENGTH_INDEFINITE
+            )
+            .show()
+    }
 }

@@ -1,4 +1,4 @@
-package com.tashev.gbweatherfromya.view.citiesListFragment
+package com.tashev.gbweatherfromya.view.citiesList
 
 import android.view.LayoutInflater
 import android.view.View
@@ -31,7 +31,7 @@ class CitiesListAdapter(private var onItemViewClickListener: CitiesListFragment.
     inner class CitiesViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(weather: Weather) {
             itemView.findViewById<TextView>(R.id.mainFragmentRecyclerItemTextView).text =
-                weather.city.city
+                weather.city.name
             itemView.setOnClickListener { onItemViewClickListener?.onItemViewClick(weather) }
         }
     }

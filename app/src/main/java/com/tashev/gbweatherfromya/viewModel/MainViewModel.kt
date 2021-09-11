@@ -16,7 +16,6 @@ class MainViewModel(
 
     fun getWeatherFromLocalSourceRus() = getDataFromLocalSource(isRussian = true)
     fun getWeatherFromLocalSourceWorld() = getDataFromLocalSource(isRussian = false)
-//    fun getWeatherFromRemoteSource() = getDataFromLocalSource(isRussian = true)       Пока бесполезен
 
     private fun getDataFromLocalSource(isRussian: Boolean) {
         liveDataToObserve.postValue(AppState.Loading)
@@ -25,8 +24,8 @@ class MainViewModel(
 
     private fun simulateServerResponseWithRandomResult(isRussian: Boolean) {
         Thread {
-            sleep(1000)
-            if (Random.nextInt(10) < 2) {
+            sleep(800)
+            if (Random.nextInt(15) < 1) {
                 liveDataToObserve.postValue(AppState.Error(Exception("Не удалось загрузить данные о погоде")))
             } else {
                 liveDataToObserve.postValue(
