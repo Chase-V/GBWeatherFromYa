@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="clear">Clear</string>
+    <string name="drizzle">Drizzle</string>
+    <string name="app_name">Weather From Yandex</string>
+    <string name="someText">Some text</string>
+    <string name="temperature_label">Temperature</string>
+    <string name="feels_like_label">Feels like</string>
+    <string name="city_coordinates">lt/ln: %s, %s</string>
+    <string name="error">Error</string>
+    <string name="reload">Reload</string>
+    <string name="flag">Flag</string>
+    <string name="some_part_name">Day</string>
+    <string name="someTemp">20°</string>
+    <string name="someWindSpeed">5m/s</string>
+    <string name="someHumidity">50%</string>
+    <string name="longTextString">Some senseless long text</string>
+    <string name="partly_cloudy">Partly cloudy</string>
+    <string name="cloudy">Cloudy</string>
+    <string name="overcast">Overcast</string>
+    <string name="light_rain">Light Rain</string>
+    <string name="rain">Rain</string>
+    <string name="moderate_rain">Moderate rain</string>
+    <string name="heavy_rain">Heavy rain</string>
+    <string name="continuous_heavy_rain">Continuous heavy rain</string>
+    <string name="showers">Showers</string>
+    <string name="wet_snow">Wet snow</string>
+    <string name="light_snow">Light snow</string>
+    <string name="snow">Snow</string>
+    <string name="snow_showers">Snow showers</string>
+    <string name="hail">Hail</string>
+    <string name="thunderstorm">Thunderstorm</string>
+    <string name="thunderstorm_with_rain">Thunderstorm with rain</string>
+    <string name="thunderstorm_with_hail">Thunderstorm with hail</string>
+    <string name="night">Night</string>
+    <string name="morning">Morning</string>
+    <string name="day">Day</string>
+    <string name="evening">Evening</string>
+    <string name="sunny">Sunny</string>
+    <string name="someCityName">Moscow</string>
+    <string name="mps">m\\s</string>
+    <string name="mm">mm</string>
+
+</resources>

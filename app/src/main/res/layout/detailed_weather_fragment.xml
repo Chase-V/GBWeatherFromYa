@@ -28,9 +28,9 @@
 
             <ImageView
                 android:id="@+id/weatherConditionIcon"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_margin="@dimen/topMargin"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="30dp"
                 android:contentDescription="@string/sunny"
                 android:src="@drawable/sunny"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -42,13 +42,13 @@
                 android:id="@+id/cityName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
+                android:layout_marginTop="@dimen/margin_15_dp"
                 android:textSize="35sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/weatherConditionIcon"
-                tools:text="Москва" />
+                tools:text="@string/someCityName" />
 
             <TextView
                 android:id="@+id/cityCoordinates"
@@ -76,6 +76,7 @@
                 android:id="@+id/temperatureValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_15_dp"
                 android:textSize="@dimen/feels_like_text_size"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/temperatureLabel"
@@ -100,6 +101,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/feels_like_text_size"
+                android:layout_marginTop="@dimen/margin_15_dp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/feelsLikeLabel"
                 app:layout_constraintStart_toStartOf="@+id/feelsLikeLabel"
@@ -110,12 +112,38 @@
                 android:id="@+id/condition"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_15_dp"
                 android:textSize="28sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cityCoordinates"
-                tools:text="Ясно" />
+                tools:text="@string/some_part_name" />
+
+            <TextView
+                android:id="@+id/windSpeed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/humidityIcon"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/windSpeedIcon"
+                app:layout_constraintTop_toBottomOf="@+id/temperatureValue"
+                tools:text="@string/someWindSpeed" />
+
+            <ImageView
+                android:id="@+id/windSpeedIcon"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:contentDescription="@string/sunny"
+                android:src="@drawable/wind"
+                app:layout_constraintBottom_toBottomOf="@+id/windSpeed"
+                app:layout_constraintEnd_toStartOf="@+id/windSpeed"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/windSpeed" />
 
             <ImageView
                 android:id="@+id/humidityIcon"
@@ -136,51 +164,47 @@
                 android:textSize="22sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/humidityIcon"
-                app:layout_constraintEnd_toStartOf="@+id/guideline4"
+                app:layout_constraintEnd_toStartOf="@+id/pressureIcon"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/humidityIcon"
                 app:layout_constraintTop_toTopOf="@+id/humidityIcon"
                 tools:text="@string/someHumidity" />
 
             <ImageView
-                android:id="@+id/windSpeedIcon"
+                android:id="@+id/pressureIcon"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_marginTop="@dimen/topMargin"
                 android:contentDescription="@string/sunny"
-                android:src="@drawable/wind"
-                app:layout_constraintBottom_toBottomOf="@+id/windSpeed"
-                app:layout_constraintEnd_toStartOf="@+id/windSpeed"
+                android:src="@drawable/atmospheric_pressure"
+                app:layout_constraintBottom_toBottomOf="@+id/humidity"
+                app:layout_constraintEnd_toStartOf="@+id/pressure"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="@+id/guideline3"
-                app:layout_constraintTop_toBottomOf="@+id/temperatureValue" />
+                app:layout_constraintStart_toEndOf="@+id/humidity"
+                app:layout_constraintTop_toTopOf="@+id/humidity" />
 
             <TextView
-                android:id="@+id/windSpeed"
+                android:id="@+id/pressure"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/topMargin"
                 android:textSize="22sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/humidityIcon"
+
+                app:layout_constraintBottom_toBottomOf="@+id/pressureIcon"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/windSpeedIcon"
-                app:layout_constraintTop_toBottomOf="@+id/temperatureValue"
-                tools:text="@string/someWindSpeed" />
+                app:layout_constraintStart_toEndOf="@+id/pressureIcon"
+                app:layout_constraintTop_toTopOf="@+id/pressureIcon"
+                tools:text="@string/someHumidity" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_begin="114dp" />
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#C4C4C4"
+                app:layout_constraintBottom_toBottomOf="@id/constraintLayout2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_begin="297dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -188,7 +212,7 @@
             android:id="@+id/constraintLayout"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:padding="10dp"
+            android:paddingLeft="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
@@ -196,23 +220,35 @@
             app:layout_constraintWidth_percent="0.5">
 
             <TextView
+                android:id="@+id/textView2"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#C4C4C4"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
                 android:id="@+id/forecastPartName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/part_name"
+                android:text="@string/some_part_name"
                 android:textSize="26sp"
                 app:layout_constraintEnd_toStartOf="@+id/forecastConditionIcon"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="@+id/forecastConditionIcon" />
 
             <ImageView
                 android:id="@+id/forecastConditionIcon"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:layout_margin="10dp"
+                android:contentDescription="@string/sunny"
                 android:src="@drawable/sunny"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:contentDescription="@string/sunny" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/forecastTempMin"
@@ -250,8 +286,9 @@
                 android:id="@+id/forecastTempMax"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="3dp"
                 android:text="@string/someTemp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/forecastCondition"
                 app:layout_constraintStart_toEndOf="@+id/forecastTempAvg"
                 app:layout_constraintTop_toTopOf="@+id/forecastTempAvg" />
 
@@ -280,9 +317,10 @@
                 android:id="@+id/forecastWindSpeed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="13dp"
                 android:text="@string/someWindSpeed"
                 app:layout_constraintBottom_toBottomOf="@+id/ForecastWindSpeedIcon"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/forecastCondition"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/ForecastWindSpeedIcon"
                 app:layout_constraintTop_toTopOf="@+id/ForecastWindSpeedIcon" />
@@ -314,10 +352,10 @@
                 android:id="@+id/forecastCondition"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
                 android:text="@string/longTextString"
+                android:textAlignment="center"
                 android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/forecastConditionIcon"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/forecastConditionIcon" />
@@ -339,9 +377,9 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:orientation="horizontal"
-            android:padding="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:paddingLeft="10dp"
 
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/constraintLayout"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
@@ -352,20 +390,21 @@
                 android:id="@+id/forecastPartName2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/part_name"
+                android:text="@string/some_part_name"
                 android:textSize="26sp"
                 app:layout_constraintEnd_toStartOf="@+id/forecastConditionIcon2"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="@+id/forecastConditionIcon2" />
 
             <ImageView
                 android:id="@+id/forecastConditionIcon2"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:layout_margin="10dp"
+                android:contentDescription="@string/sunny"
                 android:src="@drawable/sunny"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:contentDescription="@string/sunny" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/forecastTempMin2"
@@ -468,8 +507,8 @@
                 android:id="@+id/forecastCondition2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
                 android:text="@string/sunny"
+                android:textAlignment="center"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"

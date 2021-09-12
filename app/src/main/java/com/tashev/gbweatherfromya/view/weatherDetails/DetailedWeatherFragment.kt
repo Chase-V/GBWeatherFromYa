@@ -64,18 +64,19 @@ class DetailedWeatherFragment : Fragment(), WeatherLoaderListener {
             )
 
             temperatureValue.text = String.format("%s°", weatherDTO.fact.temp.toString())
-            condition.text = translations[weatherDTO.fact.condition]
+            condition.text = getStringResourceByName(weatherDTO.fact.condition)
             feelsLikeValue.text = String.format("%s°", weatherDTO.fact.feels_like.toString())
-            windSpeed.text = String.format("%s м/c", weatherDTO.fact.wind_speed.toString())
+            windSpeed.text = String.format("%s ${resources.getString(R.string.mps)}", weatherDTO.fact.wind_speed.toString())
             humidity.text = String.format("%s%%", weatherDTO.fact.humidity.toString())
+            pressure.text = String.format("%s${resources.getString(R.string.mm)}", weatherDTO.fact.pressure_mm.toString())
             weatherConditionIcon.loadImageFromUrl("https://yastatic.net/weather/i/icons/funky/dark/${weatherDTO.fact.icon}.svg")
 
 //region мб перекручу это на инфлейтер с заготовленным контейнером
             with(weatherDTO.forecast.parts[0]) {
-                forecastPartName.text = translations[part_name]
-                forecastCondition.text = translations[condition]
+                forecastPartName.text = getStringResourceByName(part_name)
+                forecastCondition.text = getStringResourceByName(condition)
                 forecastHumidity.text = String.format("%s%%", humidity.toString())
-                forecastWindSpeed.text = String.format("%s м/c", wind_speed.toString())
+                forecastWindSpeed.text = String.format("%s ${resources.getString(R.string.mps)}", wind_speed.toString())
                 forecastTempMin.text = String.format("%s°", temp_min.toString())
                 forecastTempAvg.text = String.format("%s°", temp_avg.toString())
                 forecastTempMax.text = String.format("%s°", temp_max.toString())
@@ -83,10 +84,10 @@ class DetailedWeatherFragment : Fragment(), WeatherLoaderListener {
                 forecastConditionIcon.loadImageFromUrl("https://yastatic.net/weather/i/icons/funky/dark/${icon}.svg")
             }
             with(weatherDTO.forecast.parts[1]) {
-                forecastPartName2.text = translations[part_name]
-                forecastCondition2.text = translations[condition]
+                forecastPartName2.text = getStringResourceByName(part_name)
+                forecastCondition2.text = getStringResourceByName(condition)
                 forecastHumidity2.text = String.format("%s%%", humidity.toString())
-                forecastWindSpeed2.text = String.format("%s м/c", wind_speed.toString())
+                forecastWindSpeed2.text = String.format("%s ${resources.getString(R.string.mps)}", wind_speed.toString())
                 forecastTempMin2.text = String.format("%s°", temp_min.toString())
                 forecastTempAvg2.text = String.format("%s°", temp_avg.toString())
                 forecastTempMax2.text = String.format("%s°", temp_max.toString())
@@ -97,31 +98,12 @@ class DetailedWeatherFragment : Fragment(), WeatherLoaderListener {
         }
     }
 
-    private val translations = mapOf(
-        "clear" to "Ясно",
-        "partly-cloudy" to "Малооблачно",
-        "cloudy" to "Облачно с прояснениями",
-        "overcast" to "Пасмурно",
-        "drizzle" to "Морось",
-        "light-rain" to "Небольшой дождь",
-        "rain" to "Дождь",
-        "moderate-rain" to "Умеренно сильный дождь",
-        "heavy-rain" to "Сильный дождь",
-        "continuous-heavy-rain" to "Длительный сильный дождь",
-        "showers" to "Ливень",
-        "wet-snow" to "Дождь со снегом",
-        "light-snow" to "Небольшой снег",
-        "snow" to "Снег",
-        "snow-showers" to "Снегопад",
-        "hail" to "Град",
-        "thunderstorm" to "Гроза",
-        "thunderstorm-with-rain" to "Дождь с грозой",
-        "thunderstorm-with-hail" to "Гроза с градом",
-        "night" to "Ночь",
-        "morning" to "Утро",
-        "day" to "День",
-        "evening" to "вечер"
-    )
+    private fun getStringResourceByName(aString: String) :String{
+        if (aString.contains("-",true)) aString.replace("-","_")
+        val packageName = resources.getResourcePackageName(R.string.clear)
+        val resId = resources.getIdentifier(aString, "string", packageName)
+        return getString(resId)
+    }
 
     private fun ImageView.loadImageFromUrl(imageUrl: String) {
         val imageLoader = ImageLoader.Builder(this.context)
