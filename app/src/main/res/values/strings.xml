@@ -12,7 +12,6 @@
     <string name="someWindSpeed">5м/с</string>
     <string name="someHumidity">50%</string>
     <string name="longTextString">Облачно с прояснениями</string>
-
     <string name="clear">Ясно</string>
     <string name="partly_cloudy">Малооблачно</string>
     <string name="cloudy">Облачно с прояснениями</string>
