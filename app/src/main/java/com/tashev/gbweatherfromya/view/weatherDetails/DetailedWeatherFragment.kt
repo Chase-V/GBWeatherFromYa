@@ -17,6 +17,9 @@ import com.tashev.gbweatherfromya.databinding.DetailedWeatherFragmentBinding
 import com.tashev.gbweatherfromya.repository.weatherLoaderAndDTO.WeatherDTO
 import com.tashev.gbweatherfromya.repository.weatherLoaderAndDTO.WeatherLoader
 import com.tashev.gbweatherfromya.repository.weatherLoaderAndDTO.WeatherLoaderListener
+import kotlinx.android.synthetic.main.detailed_weather_fragment.*
+
+//import kotlinx.android.synthetic.main.for_test_detailed_weather_fragment.*
 
 class DetailedWeatherFragment : Fragment(), WeatherLoaderListener {
 
@@ -59,16 +62,42 @@ class DetailedWeatherFragment : Fragment(), WeatherLoaderListener {
                 localWeather.city.lat.toString(),
                 localWeather.city.lon.toString()
             )
+
             temperatureValue.text = String.format("%s°", weatherDTO.fact.temp.toString())
-            condition.text = weatherTranslations[weatherDTO.fact.condition]
+            condition.text = translations[weatherDTO.fact.condition]
             feelsLikeValue.text = String.format("%s°", weatherDTO.fact.feels_like.toString())
             windSpeed.text = String.format("%s м/c", weatherDTO.fact.wind_speed.toString())
             humidity.text = String.format("%s%%", weatherDTO.fact.humidity.toString())
             weatherConditionIcon.loadImageFromUrl("https://yastatic.net/weather/i/icons/funky/dark/${weatherDTO.fact.icon}.svg")
+
+//region мб перекручу это на инфлейтер с заготовленным контейнером
+            with(weatherDTO.forecast.parts[0]) {
+                forecastPartName.text = translations[part_name]
+                forecastCondition.text = translations[condition]
+                forecastHumidity.text = String.format("%s%%", humidity.toString())
+                forecastWindSpeed.text = String.format("%s м/c", wind_speed.toString())
+                forecastTempMin.text = String.format("%s°", temp_min.toString())
+                forecastTempAvg.text = String.format("%s°", temp_avg.toString())
+                forecastTempMax.text = String.format("%s°", temp_max.toString())
+                forecastFeelsLike.text = String.format("%s°", feels_like.toString())
+                forecastConditionIcon.loadImageFromUrl("https://yastatic.net/weather/i/icons/funky/dark/${icon}.svg")
+            }
+            with(weatherDTO.forecast.parts[1]) {
+                forecastPartName2.text = translations[part_name]
+                forecastCondition2.text = translations[condition]
+                forecastHumidity2.text = String.format("%s%%", humidity.toString())
+                forecastWindSpeed2.text = String.format("%s м/c", wind_speed.toString())
+                forecastTempMin2.text = String.format("%s°", temp_min.toString())
+                forecastTempAvg2.text = String.format("%s°", temp_avg.toString())
+                forecastTempMax2.text = String.format("%s°", temp_max.toString())
+                forecastFeelsLike2.text = String.format("%s°", feels_like.toString())
+                forecastConditionIcon2.loadImageFromUrl("https://yastatic.net/weather/i/icons/funky/dark/${icon}.svg")
+            }
+//endregion
         }
     }
 
-    private val weatherTranslations = mapOf(
+    private val translations = mapOf(
         "clear" to "Ясно",
         "partly-cloudy" to "Малооблачно",
         "cloudy" to "Облачно с прояснениями",
@@ -87,7 +116,11 @@ class DetailedWeatherFragment : Fragment(), WeatherLoaderListener {
         "hail" to "Град",
         "thunderstorm" to "Гроза",
         "thunderstorm-with-rain" to "Дождь с грозой",
-        "thunderstorm-with-hail" to "Гроза с градом"
+        "thunderstorm-with-hail" to "Гроза с градом",
+        "night" to "Ночь",
+        "morning" to "Утро",
+        "day" to "День",
+        "evening" to "вечер"
     )
 
     private fun ImageView.loadImageFromUrl(imageUrl: String) {
