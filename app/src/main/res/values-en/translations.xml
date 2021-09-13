@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="clear">Clear</string>
+<!--    <string name="clear">Clear</string>-->
     <string name="drizzle">Drizzle</string>
     <string name="app_name">Weather From Yandex</string>
     <string name="someText">Some text</string>
@@ -40,5 +40,6 @@
     <string name="someCityName">Moscow</string>
     <string name="mps">m\\s</string>
     <string name="mm">mm</string>
+    <string name="clear">Clear</string>
 
 </resources>

@@ -9,7 +9,11 @@ import java.io.InputStreamReader
 import java.net.URL
 import javax.net.ssl.HttpsURLConnection
 
-class WeatherLoader(private val listener: WeatherLoaderListener, private val lat: Double, private val lon: Double) {
+class WeatherLoader(
+    private val listener: WeatherLoaderListener,
+    private val lat: Double,
+    private val lon: Double
+) {
     private val API_KEY: String = "948e25d8-98e9-43cc-a59b-0a36aab31239"
     private val API_KEY_TYPE: String = "X-Yandex-API-Key"
 
@@ -24,7 +28,11 @@ class WeatherLoader(private val listener: WeatherLoaderListener, private val lat
             val reader = BufferedReader(InputStreamReader(urlConnection.inputStream))
             val weatherDTO = Gson().fromJson(reader, WeatherDTO::class.java)
             val handler = Handler(Looper.getMainLooper())
-            handler.post { listener.onLoaded(weatherDTO) }
+            if (weatherDTO != null) {
+                handler.post { listener.onLoaded(weatherDTO) }
+            } else {
+                handler.post { listener.onFailed(Throwable("Weather is null")) }
+            }
             urlConnection.disconnect()
         }.start()
     }

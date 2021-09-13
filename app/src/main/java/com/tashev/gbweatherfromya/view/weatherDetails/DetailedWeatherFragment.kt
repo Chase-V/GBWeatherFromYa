@@ -2,6 +2,7 @@ package com.tashev.gbweatherfromya.view.weatherDetails
 
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -62,13 +63,18 @@ class DetailedWeatherFragment : Fragment(), WeatherLoaderListener {
                 localWeather.city.lat.toString(),
                 localWeather.city.lon.toString()
             )
-
             temperatureValue.text = String.format("%s°", weatherDTO.fact.temp.toString())
             condition.text = getStringResourceByName(weatherDTO.fact.condition)
             feelsLikeValue.text = String.format("%s°", weatherDTO.fact.feels_like.toString())
-            windSpeed.text = String.format("%s ${resources.getString(R.string.mps)}", weatherDTO.fact.wind_speed.toString())
+            windSpeed.text = String.format(
+                "%s ${resources.getString(R.string.mps)}",
+                weatherDTO.fact.wind_speed.toString()
+            )
             humidity.text = String.format("%s%%", weatherDTO.fact.humidity.toString())
-            pressure.text = String.format("%s${resources.getString(R.string.mm)}", weatherDTO.fact.pressure_mm.toString())
+            pressure.text = String.format(
+                "%s${resources.getString(R.string.mm)}",
+                weatherDTO.fact.pressure_mm.toString()
+            )
             weatherConditionIcon.loadImageFromUrl("https://yastatic.net/weather/i/icons/funky/dark/${weatherDTO.fact.icon}.svg")
 
 //region мб перекручу это на инфлейтер с заготовленным контейнером
@@ -76,7 +82,8 @@ class DetailedWeatherFragment : Fragment(), WeatherLoaderListener {
                 forecastPartName.text = getStringResourceByName(part_name)
                 forecastCondition.text = getStringResourceByName(condition)
                 forecastHumidity.text = String.format("%s%%", humidity.toString())
-                forecastWindSpeed.text = String.format("%s ${resources.getString(R.string.mps)}", wind_speed.toString())
+                forecastWindSpeed.text =
+                    String.format("%s ${resources.getString(R.string.mps)}", wind_speed.toString())
                 forecastTempMin.text = String.format("%s°", temp_min.toString())
                 forecastTempAvg.text = String.format("%s°", temp_avg.toString())
                 forecastTempMax.text = String.format("%s°", temp_max.toString())
@@ -84,10 +91,12 @@ class DetailedWeatherFragment : Fragment(), WeatherLoaderListener {
                 forecastConditionIcon.loadImageFromUrl("https://yastatic.net/weather/i/icons/funky/dark/${icon}.svg")
             }
             with(weatherDTO.forecast.parts[1]) {
+                Log.d("mylog", weatherDTO.forecast.parts[1].toString())
                 forecastPartName2.text = getStringResourceByName(part_name)
                 forecastCondition2.text = getStringResourceByName(condition)
                 forecastHumidity2.text = String.format("%s%%", humidity.toString())
-                forecastWindSpeed2.text = String.format("%s ${resources.getString(R.string.mps)}", wind_speed.toString())
+                forecastWindSpeed2.text =
+                    String.format("%s ${resources.getString(R.string.mps)}", wind_speed.toString())
                 forecastTempMin2.text = String.format("%s°", temp_min.toString())
                 forecastTempAvg2.text = String.format("%s°", temp_avg.toString())
                 forecastTempMax2.text = String.format("%s°", temp_max.toString())
@@ -98,10 +107,13 @@ class DetailedWeatherFragment : Fragment(), WeatherLoaderListener {
         }
     }
 
-    private fun getStringResourceByName(aString: String) :String{
-        if (aString.contains("-",true)) aString.replace("-","_")
+    private fun getStringResourceByName(aString: String): String {
+        var aStringChanged = aString
+        if (aString.contains("-", true)) {
+            aStringChanged = aString.replace("-", "_")
+        }
         val packageName = resources.getResourcePackageName(R.string.clear)
-        val resId = resources.getIdentifier(aString, "string", packageName)
+        val resId = resources.getIdentifier(aStringChanged, "string", packageName)
         return getString(resId)
     }
 
