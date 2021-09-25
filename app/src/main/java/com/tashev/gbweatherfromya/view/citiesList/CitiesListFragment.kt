@@ -96,7 +96,7 @@ class CitiesListFragment : Fragment() {
         super.onDestroy()
     }
 
-    private fun snackbarWithString(message: String, actionMessage:String) {
+    fun snackbarWithString(message: String, actionMessage:String) {
         Snackbar
             .make(
                 binding.root,
@@ -109,7 +109,7 @@ class CitiesListFragment : Fragment() {
             .show()
     }
 
-    private fun snackbarWithString(message: Int, actionMessage:Int) {
+    fun snackbarWithString(message: Int, actionMessage:Int) {
         Snackbar
             .make(
                 binding.root,
@@ -122,7 +122,7 @@ class CitiesListFragment : Fragment() {
             .show()
     }
 
-    private fun snackBarWithoutAction(string: Int) {
+    fun snackBarWithoutAction(string: Int) {
         Snackbar
             .make(
                 binding.root,
