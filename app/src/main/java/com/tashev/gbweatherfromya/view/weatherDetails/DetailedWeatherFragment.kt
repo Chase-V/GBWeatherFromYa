@@ -3,7 +3,6 @@ package com.tashev.gbweatherfromya.view.weatherDetails
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.util.Log
@@ -12,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import coil.ImageLoader
 import coil.decode.SvgDecoder
@@ -21,9 +21,11 @@ import com.tashev.gbweatherfromya.R
 import com.tashev.gbweatherfromya.dataSource.Weather
 import com.tashev.gbweatherfromya.databinding.DetailedWeatherFragmentBinding
 import com.tashev.gbweatherfromya.repository.weatherLoaderAndDTO.*
+import com.tashev.gbweatherfromya.viewModel.AppState
+import com.tashev.gbweatherfromya.viewModel.DetailsViewModel
 import kotlinx.android.synthetic.main.detailed_weather_fragment.*
 
-class DetailedWeatherFragment : Fragment(), WeatherLoaderListener {
+class DetailedWeatherFragment : Fragment(){
 
     companion object {
 
@@ -38,6 +40,9 @@ class DetailedWeatherFragment : Fragment(), WeatherLoaderListener {
 
     private var _binding: DetailedWeatherFragmentBinding? = null
     private val binding get() = _binding!!
+    private val viewModel: DetailsViewModel by lazy {
+        ViewModelProvider(this).get(DetailsViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,14 +58,27 @@ class DetailedWeatherFragment : Fragment(), WeatherLoaderListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        WeatherLoader(this, localWeather.city.lat, localWeather.city.lon).loadWeather()
-        val intent = Intent(requireActivity(), DetailService::class.java)
-        intent.putExtra(LATITUDE_EXTRA, localWeather.city.lat)
-        intent.putExtra(LONGITUDE_EXTRA, localWeather.city.lon)
-        requireActivity().startService(intent)
-        LocalBroadcastManager.getInstance(requireActivity())
-            .registerReceiver(receiver, IntentFilter(DETAILS_INTENT_FILTER)
-        )
+        viewModel.getLiveData().observe(viewLifecycleOwner, {
+            renderData(it)
+        })
+    }
+
+    private fun renderData(appState: AppState) {
+        when (appState) {
+            is AppState.Success -> {
+                val weather = appState.weatherData
+                showWeather(weather)
+
+            }
+            is AppState.Loading -> {
+                binding.mainView.visibility = View.INVISIBLE
+                binding.loadingLayout.visibility = View.VISIBLE
+            }
+            is AppState.Error -> {
+                val throwable = appState.error
+                Snackbar.make(binding.root, R.string.error, Snackbar.LENGTH_LONG)
+            }
+        }
     }
 
     private fun showWeather(weatherDTO: WeatherDTO) {
@@ -71,7 +89,7 @@ class DetailedWeatherFragment : Fragment(), WeatherLoaderListener {
                 localWeather.city.lat.toString(),
                 localWeather.city.lon.toString()
             )
-            temperatureValue.text = String.format("%s°", weatherDTO.fact.temp.toString())
+            temperatureValue.text = String.format("%s°", weatherDTO.fact.temp)
             condition.text = getStringResourceByName(weatherDTO.fact.condition)
             feelsLikeValue.text = String.format("%s°", weatherDTO.fact.feels_like.toString())
             windSpeed.text = String.format(
@@ -154,32 +172,8 @@ class DetailedWeatherFragment : Fragment(), WeatherLoaderListener {
         imageLoader.enqueue(imageRequest)
     }
 
-    override fun onLoaded(weatherDTO: WeatherDTO) {
-        showWeather(weatherDTO)
-    }
-
-    override fun onFailed(throwable: Throwable) {
-        Snackbar.make(binding.root, getString(R.string.error), Snackbar.LENGTH_INDEFINITE).show()
-    }
-
-    private val receiver: BroadcastReceiver = object : BroadcastReceiver() {
-        override fun onReceive(context: Context?, intent: Intent?) {
-            intent?.let {
-                val weatherDTO = intent.getParcelableExtra<WeatherDTO>(DETAILS_LOAD_RESULT_EXTRA)
-                if (weatherDTO != null) {
-                    showWeather(weatherDTO)
-                } else {
-                    Snackbar.make(binding.root, "Ошибка при загрузке данных с сервера", Snackbar.LENGTH_LONG)
-                }
-            }
-
-        }
-
-    }
-
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
-        LocalBroadcastManager.getInstance(requireActivity()).unregisterReceiver(receiver)
     }
 }

@@ -16,7 +16,7 @@ const val DETAILS_LOAD_RESULT_EXTRA = "LOAD RESULT"
 const val LATITUDE_EXTRA = "LATITUDE"
 const val LONGITUDE_EXTRA = "LONGITUDE"
 
-class DetailService(name:String = "details") : IntentService(name) {
+class DetailService(name: String = "details") : IntentService(name) {
     override fun onHandleIntent(intent: Intent?) {
         intent?.let {
             val lat = it.getDoubleExtra(LATITUDE_EXTRA, -1.0)
@@ -28,7 +28,7 @@ class DetailService(name:String = "details") : IntentService(name) {
     private val API_KEY: String = "948e25d8-98e9-43cc-a59b-0a36aab31239"
     private val API_KEY_TYPE: String = "X-Yandex-API-Key"
 
-    private fun loadWeather(lat:Double, lon:Double) {
+    private fun loadWeather(lat: Double, lon: Double) {
         val url = URL("https://api.weather.yandex.ru/v2/informers?lat=${lat}&lon=${lon}&lang=ru_RU")
 
         Thread {

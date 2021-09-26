@@ -39,4 +39,5 @@
     <string name="someCityName">Москва</string>
     <string name="mps">м\\с</string>
     <string name="mm">мм</string>
+    <string name="errorLoadingFromServer">Ошибка при загрузке данных с сервера</string>
 </resources>

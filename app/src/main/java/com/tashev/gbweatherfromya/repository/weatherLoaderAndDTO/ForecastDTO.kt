@@ -6,10 +6,10 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class ForecastDTO(
     val parts: List<Part>
-):Parcelable
+) : Parcelable
 
 @Parcelize
-data class Part (
+data class Part(
     val part_name: String,
     val temp_min: Int,
     val temp_avg: Int,
@@ -19,4 +19,4 @@ data class Part (
     val icon: String,
     val condition: String,
     val feels_like: Long,
-):Parcelable
+) : Parcelable

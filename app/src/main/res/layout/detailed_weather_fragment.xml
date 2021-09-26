@@ -42,12 +42,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_15_dp"
+                android:text="@string/someCityName"
                 android:textSize="35sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/weatherConditionIcon"
-                android:text="@string/someCityName" />
+                app:layout_constraintTop_toBottomOf="@+id/weatherConditionIcon" />
 
             <TextView
                 android:id="@+id/cityCoordinates"
@@ -63,12 +63,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/topMargin"
+                android:text="@string/temperature_label"
                 app:layout_constraintBottom_toTopOf="@+id/temperatureValue"
                 app:layout_constraintEnd_toStartOf="@+id/feelsLikeLabel"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/condition"
-                android:text="@string/temperature_label" />
+                app:layout_constraintTop_toBottomOf="@+id/condition" />
 
             <TextView
                 android:id="@+id/temperatureValue"
@@ -87,12 +87,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/topMargin"
+                android:text="@string/feels_like_label"
                 app:layout_constraintBottom_toTopOf="@+id/feelsLikeValue"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/temperatureLabel"
-                app:layout_constraintTop_toBottomOf="@+id/condition"
-                android:text="@string/feels_like_label" />
+                app:layout_constraintTop_toBottomOf="@+id/condition" />
 
             <TextView
                 android:id="@+id/feelsLikeValue"
@@ -111,12 +111,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_15_dp"
+                android:text="@string/some_part_name"
                 android:textSize="28sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cityCoordinates"
-                android:text="@string/some_part_name" />
+                app:layout_constraintTop_toBottomOf="@+id/cityCoordinates" />
 
             <TextView
                 android:id="@+id/windSpeed"
@@ -233,11 +233,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
+                android:text="@string/some_part_name"
                 android:textSize="26sp"
                 app:layout_constraintEnd_toStartOf="@+id/forecastConditionIcon"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/forecastConditionIcon"
-                android:text="@string/some_part_name" />
+                app:layout_constraintTop_toTopOf="@+id/forecastConditionIcon" />
 
             <ImageView
                 android:id="@+id/forecastConditionIcon"
@@ -265,10 +265,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
+                android:text="@string/temperature_label"
                 app:layout_constraintBottom_toTopOf="@+id/forecastFeelsLikeLabel"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ForecastHumidityIcon"
-                android:text="@string/temperature_label" />
+                app:layout_constraintTop_toBottomOf="@+id/ForecastHumidityIcon" />
 
             <TextView
                 android:id="@+id/forecastTempAvg"
@@ -295,11 +295,11 @@
                 android:id="@+id/forecastFeelsLikeLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginBottom="20dp"
+                android:text="@string/feels_like_label"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:text="@string/feels_like_label" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <ImageView
                 android:id="@+id/ForecastWindSpeedIcon"
@@ -351,14 +351,14 @@
                 android:id="@+id/forecastCondition"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
                 android:layout_marginStart="10dp"
+                android:text="@string/longTextString"
+                android:textAlignment="center"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="@+id/forecastConditionIcon"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/forecastConditionIcon"
-                android:text="@string/longTextString" />
+                app:layout_constraintTop_toBottomOf="@+id/forecastConditionIcon" />
 
             <TextView
                 android:id="@+id/forecastFeelsLike"
@@ -388,12 +388,12 @@
                 android:id="@+id/forecastPartName2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="26sp"
                 android:layout_marginStart="10dp"
+                android:text="@string/some_part_name"
+                android:textSize="26sp"
                 app:layout_constraintEnd_toStartOf="@+id/forecastConditionIcon2"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/forecastConditionIcon2"
-                android:text="@string/some_part_name" />
+                app:layout_constraintTop_toTopOf="@+id/forecastConditionIcon2" />
 
             <ImageView
                 android:id="@+id/forecastConditionIcon2"
@@ -421,10 +421,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
+                android:text="@string/temperature_label"
                 app:layout_constraintBottom_toTopOf="@+id/forecastFeelsLikeLabel2"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ForecastHumidityIcon2"
-                android:text="@string/temperature_label" />
+                app:layout_constraintTop_toBottomOf="@+id/ForecastHumidityIcon2" />
 
             <TextView
                 android:id="@+id/forecastTempAvg2"
@@ -451,11 +451,11 @@
                 android:id="@+id/forecastFeelsLikeLabel2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginBottom="20dp"
+                android:text="@string/feels_like_label"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:text="@string/feels_like_label" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <ImageView
                 android:id="@+id/ForecastWindSpeedIcon2"
@@ -507,13 +507,13 @@
                 android:id="@+id/forecastCondition2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@string/sunny"
                 android:textAlignment="center"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/forecastConditionIcon2"
-                android:text="@string/sunny" />
+                app:layout_constraintTop_toBottomOf="@+id/forecastConditionIcon2" />
 
             <TextView
                 android:id="@+id/forecastFeelsLike2"

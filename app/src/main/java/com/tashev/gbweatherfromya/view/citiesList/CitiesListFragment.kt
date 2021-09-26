@@ -29,7 +29,7 @@ class CitiesListFragment : Fragment() {
     private val adapter = CitiesListAdapter(object : OnItemViewClickListener {
         override fun onItemViewClick(weather: Weather) {
             val manager = activity?.supportFragmentManager
-            manager?.let{
+            manager?.let {
                 val bundle = Bundle()
                 bundle.putParcelable(DetailedWeatherFragment.BUNDLE_KEY, weather)
 
@@ -42,7 +42,8 @@ class CitiesListFragment : Fragment() {
     })
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = CitiesListFragmentBinding.inflate(inflater, container, false)
         return binding.root
@@ -50,7 +51,7 @@ class CitiesListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        with(binding){
+        with(binding) {
             mainFragmentRecyclerView.adapter = adapter
             mainFragmentFAB.setOnClickListener { changeWeatherDataSet() }
         }
@@ -88,7 +89,9 @@ class CitiesListFragment : Fragment() {
         }
     }
 
-    interface OnItemViewClickListener {fun onItemViewClick(weather: Weather)}
+    interface OnItemViewClickListener {
+        fun onItemViewClick(weather: Weather)
+    }
 
 
     override fun onDestroy() {
@@ -96,7 +99,7 @@ class CitiesListFragment : Fragment() {
         super.onDestroy()
     }
 
-    fun snackbarWithString(message: String, actionMessage:String) {
+    fun snackbarWithString(message: String, actionMessage: String) {
         Snackbar
             .make(
                 binding.root,
@@ -109,7 +112,7 @@ class CitiesListFragment : Fragment() {
             .show()
     }
 
-    fun snackbarWithString(message: Int, actionMessage:Int) {
+    fun snackbarWithString(message: Int, actionMessage: Int) {
         Snackbar
             .make(
                 binding.root,

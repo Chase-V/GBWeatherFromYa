@@ -8,7 +8,7 @@ data class Weather(
     val city: City = getDefaultCity(),
     val temperature: Int = 25,
     val feelsLike: Int = 18,
-    val windSpeed: Int = 5,
+    val windSpeed: Double = 5.0,
     val humidity: Int = 54,
     val condition: String = "Ясно"
 ) : Parcelable

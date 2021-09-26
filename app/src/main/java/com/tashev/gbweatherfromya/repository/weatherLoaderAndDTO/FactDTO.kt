@@ -12,4 +12,4 @@ data class FactDTO(
     val humidity: Int,
     val icon: String,
     val pressure_mm: Int
-):Parcelable
+) : Parcelable
