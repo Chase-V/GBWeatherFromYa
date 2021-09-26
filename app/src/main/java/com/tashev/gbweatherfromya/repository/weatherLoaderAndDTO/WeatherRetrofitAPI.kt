@@ -14,6 +14,6 @@ interface WeatherRetrofitAPI {
         @Header(YANDEX_API_KEY_NAME) apikey: String,
         @Query("lat") lat: Double,
         @Query("lon") lon: Double
-    ): Call<List<WeatherDTO>>
+    ): Call<WeatherDTO>
 
 }

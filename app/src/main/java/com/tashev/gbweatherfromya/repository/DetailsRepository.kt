@@ -14,7 +14,7 @@ interface DetailsRepository {
         lat: Double,
         lon: Double,
         callback: Callback<WeatherDTO>
-    ): WeatherDTO
+    )
 
     fun getWeatherFromLocalStorageWorld(): List<Weather>
     fun getWeatherFromLocalStorageRus(): List<Weather>
@@ -26,7 +26,7 @@ class DetailsRepositoryImpl(private val remoteDataSource: RemoteDataSource) : De
         lat: Double,
         lon: Double,
         callback: Callback<WeatherDTO>
-    ):WeatherDTO {
+    ) {
         remoteDataSource.getWeatherDetails(lat, lon, callback)
     }
 
