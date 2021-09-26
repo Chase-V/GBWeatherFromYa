@@ -61,13 +61,20 @@ class DetailedWeatherFragment : Fragment(){
         viewModel.getLiveData().observe(viewLifecycleOwner, {
             renderData(it)
         })
+        getWeather()
+    }
+
+    private fun getWeather() {
+        viewModel.getWeatherFromRemoteSource(localWeather.weatherFact.city.lat, localWeather.weatherFact.city.lon)
     }
 
     private fun renderData(appState: AppState) {
         when (appState) {
             is AppState.Success -> {
+                binding.mainView.visibility = View.VISIBLE
+                binding.loadingLayout.visibility = View.INVISIBLE
                 val weather = appState.weatherData
-                showWeather(weather)
+                showWeather(weather[0])
 
             }
             is AppState.Loading -> {
@@ -81,52 +88,51 @@ class DetailedWeatherFragment : Fragment(){
         }
     }
 
-    private fun showWeather(weatherDTO: WeatherDTO) {
+    private fun showWeather(weather: Weather) {
         with(binding) {
-            cityName.text = localWeather.city.name
+            cityName.text = localWeather.weatherFact.city.name
             cityCoordinates.text = String.format(
                 getString(R.string.city_coordinates),
-                localWeather.city.lat.toString(),
-                localWeather.city.lon.toString()
+                localWeather.weatherFact.city.lat.toString(),
+                localWeather.weatherFact.city.lon.toString()
             )
-            temperatureValue.text = String.format("%s°", weatherDTO.fact.temp)
-            condition.text = getStringResourceByName(weatherDTO.fact.condition)
-            feelsLikeValue.text = String.format("%s°", weatherDTO.fact.feels_like.toString())
+            temperatureValue.text = String.format("%s°", weather.weatherFact.temperature)
+            condition.text = getStringResourceByName(weather.weatherFact.condition)
+            feelsLikeValue.text = String.format("%s°", weather.weatherFact.feelsLike.toString())
             windSpeed.text = String.format(
                 "%s ${resources.getString(R.string.mps)}",
-                weatherDTO.fact.wind_speed.toString()
+                weather.weatherFact.windSpeed.toString()
             )
-            humidity.text = String.format("%s%%", weatherDTO.fact.humidity.toString())
+            humidity.text = String.format("%s%%",weather.weatherFact.humidity.toString())
             pressure.text = String.format(
                 "%s${resources.getString(R.string.mm)}",
-                weatherDTO.fact.pressure_mm.toString()
+                weather.weatherFact.pressure.toString()
             )
-            weatherConditionIcon.loadImageFromUrl("https://yastatic.net/weather/i/icons/funky/dark/${weatherDTO.fact.icon}.svg")
+            weatherConditionIcon.loadImageFromUrl("https://yastatic.net/weather/i/icons/funky/dark/${weather.weatherFact.icon}.svg")
 
 //region мб перекручу это на инфлейтер с заготовленным контейнером
-            with(weatherDTO.forecast.parts[0]) {
-                forecastPartName.text = getStringResourceByName(part_name)
+            with(weather.weatherForecast.parts[0]) {
+                forecastPartName.text = getStringResourceByName(partName)
                 forecastCondition.text = getStringResourceByName(condition)
                 forecastHumidity.text = String.format("%s%%", humidity.toString())
                 forecastWindSpeed.text =
-                    String.format("%s ${resources.getString(R.string.mps)}", wind_speed.toString())
-                forecastTempMin.text = String.format("%s°", temp_min.toString())
-                forecastTempAvg.text = String.format("%s°", temp_avg.toString())
-                forecastTempMax.text = String.format("%s°", temp_max.toString())
-                forecastFeelsLike.text = String.format("%s°", feels_like.toString())
+                    String.format("%s ${resources.getString(R.string.mps)}", windSpeed.toString())
+                forecastTempMin.text = String.format("%s°", tempMin.toString())
+                forecastTempAvg.text = String.format("%s°", tempAvg.toString())
+                forecastTempMax.text = String.format("%s°", tempMax.toString())
+                forecastFeelsLike.text = String.format("%s°", feelsLike.toString())
                 forecastConditionIcon.loadImageFromUrl("https://yastatic.net/weather/i/icons/funky/dark/${icon}.svg")
             }
-            with(weatherDTO.forecast.parts[1]) {
-                Log.d("mylog", weatherDTO.forecast.parts[1].toString())
-                forecastPartName2.text = getStringResourceByName(part_name)
+            with(weather.weatherForecast.parts[1]) {
+                forecastPartName2.text = getStringResourceByName(partName)
                 forecastCondition2.text = getStringResourceByName(condition)
                 forecastHumidity2.text = String.format("%s%%", humidity.toString())
                 forecastWindSpeed2.text =
-                    String.format("%s ${resources.getString(R.string.mps)}", wind_speed.toString())
-                forecastTempMin2.text = String.format("%s°", temp_min.toString())
-                forecastTempAvg2.text = String.format("%s°", temp_avg.toString())
-                forecastTempMax2.text = String.format("%s°", temp_max.toString())
-                forecastFeelsLike2.text = String.format("%s°", feels_like.toString())
+                    String.format("%s ${resources.getString(R.string.mps)}", windSpeed.toString())
+                forecastTempMin2.text = String.format("%s°", tempMin.toString())
+                forecastTempAvg2.text = String.format("%s°", tempAvg.toString())
+                forecastTempMax2.text = String.format("%s°", tempMax.toString())
+                forecastFeelsLike2.text = String.format("%s°", feelsLike.toString())
                 forecastConditionIcon2.loadImageFromUrl("https://yastatic.net/weather/i/icons/funky/dark/${icon}.svg")
             }
 //endregion

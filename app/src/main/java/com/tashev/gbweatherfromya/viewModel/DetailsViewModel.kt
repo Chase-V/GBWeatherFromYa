@@ -26,10 +26,12 @@ class DetailsViewModel(
 
     private val callback = object : Callback<WeatherDTO> {
         override fun onResponse(call: Call<WeatherDTO>, response: Response<WeatherDTO>) {
-            val serverResponse: String = response.body().toString()
-            if (response.isSuccessful && serverResponse != null) {
-                val weatherDTO = Gson().fromJson(serverResponse, WeatherDTO::class.java)
-                detailsLiveDataToObserve.value = AppState.Success(convertDTO(weatherDTO))
+
+            if (response.isSuccessful&&response.body()!=null){
+                val weatherDTO = response.body()
+                weatherDTO?.let {
+                    detailsLiveDataToObserve.postValue(AppState.Success(convertDTO(weatherDTO)))
+                }
             }
         }
 
@@ -37,18 +39,5 @@ class DetailsViewModel(
 // TODO           Snackbar.make(, R.string.errorLoadingFromServer, Snackbar.LENGTH_INDEFINITE)
         }
 
-    }
-
-    fun getWeatherFromLocalSourceRus() = getDataFromLocalSource(isRussian = true)
-    fun getWeatherFromLocalSourceWorld() = getDataFromLocalSource(isRussian = false)
-
-    private fun getDataFromLocalSource(isRussian: Boolean) {
-        detailsLiveDataToObserve.postValue(AppState.Loading)
-        detailsLiveDataToObserve.postValue(
-            AppState.Success(
-                if (isRussian) detailsRepositoryImpl.getWeatherFromLocalStorageRus()
-                else detailsRepositoryImpl.getWeatherFromLocalStorageWorld()
-            )
-        )
     }
 }
