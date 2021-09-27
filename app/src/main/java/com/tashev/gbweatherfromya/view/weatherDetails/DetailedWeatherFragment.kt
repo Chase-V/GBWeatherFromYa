@@ -1,18 +1,13 @@
 package com.tashev.gbweatherfromya.view.weatherDetails
 
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import coil.ImageLoader
 import coil.decode.SvgDecoder
 import coil.request.ImageRequest
@@ -25,7 +20,7 @@ import com.tashev.gbweatherfromya.viewModel.AppState
 import com.tashev.gbweatherfromya.viewModel.DetailsViewModel
 import kotlinx.android.synthetic.main.detailed_weather_fragment.*
 
-class DetailedWeatherFragment : Fragment(){
+class DetailedWeatherFragment : Fragment() {
 
     companion object {
 
@@ -65,17 +60,19 @@ class DetailedWeatherFragment : Fragment(){
     }
 
     private fun getWeather() {
-        viewModel.getWeatherFromRemoteSource(localWeather.weatherFact.city.lat, localWeather.weatherFact.city.lon)
+        viewModel.getWeatherFromRemoteSource(
+            localWeather.weatherFact.city.lat,
+            localWeather.weatherFact.city.lon
+        )
     }
 
     private fun renderData(appState: AppState) {
         when (appState) {
             is AppState.Success -> {
-                binding.mainView.visibility = View.VISIBLE
-                binding.loadingLayout.visibility = View.INVISIBLE
                 val weather = appState.weatherData
                 showWeather(weather[0])
-
+                binding.mainView.visibility = View.VISIBLE
+                binding.loadingLayout.visibility = View.INVISIBLE
             }
             is AppState.Loading -> {
                 binding.mainView.visibility = View.INVISIBLE
@@ -103,7 +100,7 @@ class DetailedWeatherFragment : Fragment(){
                 "%s ${resources.getString(R.string.mps)}",
                 weather.weatherFact.windSpeed.toString()
             )
-            humidity.text = String.format("%s%%",weather.weatherFact.humidity.toString())
+            humidity.text = String.format("%s%%", weather.weatherFact.humidity.toString())
             pressure.text = String.format(
                 "%s${resources.getString(R.string.mm)}",
                 weather.weatherFact.pressure.toString()

@@ -42,5 +42,25 @@
     <string name="mm">mm</string>
     <string name="clear">Clear</string>
     <string name="errorLoadingFromServer">Error while loading data from server</string>
+    <string name="svl">Sevastopol</string>
+    <string name="msc">Moscow</string>
+    <string name="spb">Saint-Petersburg</string>
+    <string name="nsb">Novosibirsk</string>
+    <string name="ekb">Ekaterinburg</string>
+    <string name="nnv">Nizhny Novgorod</string>
+    <string name="kzn">Kazan</string>
+    <string name="clb">Chelyabinsk</string>
+    <string name="omsk">Omsk</string>
+    <string name="rnd">Rostov-on-Don</string>
+    <string name="lnd">London</string>
+    <string name="tyo">Tokyo</string>
+    <string name="prs">Paris</string>
+    <string name="bln">Berlin</string>
+    <string name="rom">Rome</string>
+    <string name="mnk">Minsk</string>
+    <string name="sml">Istanbul</string>
+    <string name="wsn">Washington</string>
+    <string name="kyv">Kyiv</string>
+    <string name="bjn">Beijing</string>
 
 </resources>

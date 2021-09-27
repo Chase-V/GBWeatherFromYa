@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="svl">Севастополь</string>
+    <string name="msc">Москва</string>
+    <string name="spb">Санкт-Петербург</string>
+    <string name="nsb">Новосибирск</string>
+    <string name="ekb">Екатеринбург</string>
+    <string name="nnv">Нижний Новгород</string>
+    <string name="kzn">Казань</string>
+    <string name="clb">Челябинск</string>
+    <string name="omsk">Омск</string>
+    <string name="rnd">Ростов-на-Дону</string>
+    <string name="lnd">Лондон</string>
+    <string name="tyo">Токио</string>
+    <string name="prs">Париж</string>
+    <string name="bln">Берлин</string>
+    <string name="rom">Рим</string>
+    <string name="mnk">Минск</string>
+    <string name="sml">Стамбул</string>
+    <string name="wsn">Вашингтон</string>
+    <string name="kyv">Киев</string>
+    <string name="bjn">Пекин</string>
+</resources>

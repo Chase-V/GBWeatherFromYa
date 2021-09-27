@@ -1,7 +1,8 @@
 package com.tashev.gbweatherfromya.dataSource
 
+import android.content.Context
 import android.os.Parcelable
-import com.tashev.gbweatherfromya.repository.weatherLoaderAndDTO.Part
+import com.tashev.gbweatherfromya.view.MainActivity
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
@@ -20,12 +21,12 @@ data class WeatherFact(
     val condition: String = "Ясно",
     val pressure: Int = 55,
     val icon: String = "skc_n"
-): Parcelable
+) : Parcelable
 
 @Parcelize
 data class WeatherForecast(
     val parts: List<Parts> = listOf(Parts())
-): Parcelable
+) : Parcelable
 
 @Parcelize
 data class Parts(
@@ -38,7 +39,7 @@ data class Parts(
     val icon: String = "skc_n",
     val condition: String = "Ясно",
     val feelsLike: Long = 22,
-): Parcelable
+) : Parcelable
 
 fun getDefaultCity() = City("Севастополь", 44.61649704, 33.52513123)
 
