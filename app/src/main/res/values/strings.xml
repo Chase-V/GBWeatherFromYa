@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Погода от Яндекса</string>
+    <string name="app_name">Погодовое</string>
     <string name="someText">Какой-то текст</string>
     <string name="temperature_label">Температура</string>
     <string name="feels_like_label">Ощущается как</string>
@@ -40,4 +40,6 @@
     <string name="mps">м\\с</string>
     <string name="mm">мм</string>
     <string name="errorLoadingFromServer">Ошибка при загрузке данных с сервера</string>
+    <string name="someDate">01.01.21 00:00</string>
+    <string name="option_history">История</string>
 </resources>

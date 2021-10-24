@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/historyItemContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="10dp"
+    android:paddingTop="5dp"
+    android:paddingEnd="10dp">
+
+    <TextView
+        android:id="@+id/historyCityName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/someCityName"
+        android:textSize="@dimen/cardTextSize"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/historyCondition"
+        app:layout_constraintEnd_toStartOf="@+id/historyCondition"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/historyCondition" />
+
+    <TextView
+        android:id="@+id/historyTemperatureLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/temperature_label"
+        android:textSize="@dimen/cardTextSize"
+        app:layout_constraintEnd_toStartOf="@+id/historyTemperatureValue"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/historyCityName" />
+
+    <TextView
+        android:id="@+id/historyTemperatureValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/cardTextSize"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/historyTemperatureLabel"
+        app:layout_constraintEnd_toStartOf="@+id/historyFeelsLikeLabel"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/historyTemperatureLabel"
+        app:layout_constraintTop_toTopOf="@+id/historyTemperatureLabel"
+        tools:text="@string/someTemp" />
+
+    <TextView
+        android:id="@+id/historyFeelsLikeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/feels_like_label"
+        android:textSize="@dimen/cardTextSize"
+        app:layout_constraintBottom_toBottomOf="@+id/historyTemperatureValue"
+        app:layout_constraintEnd_toStartOf="@+id/historyFeelsLikeValue"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/historyTemperatureValue"
+        app:layout_constraintTop_toTopOf="@+id/historyTemperatureValue" />
+
+    <TextView
+        android:id="@+id/historyFeelsLikeValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/cardTextSize"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/historyFeelsLikeLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/historyFeelsLikeLabel"
+        app:layout_constraintTop_toTopOf="@+id/historyFeelsLikeLabel"
+        tools:text="@string/someTemp" />
+
+    <TextView
+        android:id="@+id/historyCondition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/longTextString"
+        android:textSize="@dimen/cardTextSize"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/historyCityName"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/historyWindSpeed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="@dimen/cardTextSize"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/historyHumidityIcon"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/historyWindSpeedIcon"
+        app:layout_constraintTop_toBottomOf="@+id/historyTemperatureValue"
+        tools:text="@string/someWindSpeed" />
+
+    <ImageView
+        android:id="@+id/historyWindSpeedIcon"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:contentDescription="@string/sunny"
+        android:src="@drawable/wind"
+        app:layout_constraintBottom_toBottomOf="@+id/historyWindSpeed"
+        app:layout_constraintEnd_toStartOf="@+id/historyWindSpeed"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/historyWindSpeed" />
+
+    <ImageView
+        android:id="@+id/historyHumidityIcon"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:contentDescription="@string/sunny"
+        android:src="@drawable/drop"
+        app:layout_constraintBottom_toBottomOf="@+id/historyWindSpeed"
+        app:layout_constraintEnd_toStartOf="@+id/historyHumidity"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/historyWindSpeed"
+        app:layout_constraintTop_toTopOf="@+id/historyWindSpeed" />
+
+    <TextView
+        android:id="@+id/historyHumidity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/cardTextSize"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/historyHumidityIcon"
+        app:layout_constraintEnd_toStartOf="@+id/historyPressureIcon"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/historyHumidityIcon"
+        app:layout_constraintTop_toTopOf="@+id/historyHumidityIcon"
+        tools:text="@string/someHumidity" />
+
+    <ImageView
+        android:id="@+id/historyPressureIcon"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:contentDescription="@string/sunny"
+        android:src="@drawable/atmospheric_pressure"
+        app:layout_constraintBottom_toBottomOf="@+id/historyHumidityIcon"
+        app:layout_constraintEnd_toStartOf="@+id/historyPressure"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/historyHumidity"
+        app:layout_constraintTop_toTopOf="@+id/historyHumidity" />
+
+    <TextView
+        android:id="@+id/historyPressure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/cardTextSize"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/historyPressureIcon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/historyPressureIcon"
+        app:layout_constraintTop_toTopOf="@+id/historyPressureIcon"
+        tools:text="@string/someHumidity" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/historyHumidityIcon" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

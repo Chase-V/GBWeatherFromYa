@@ -11,4 +11,5 @@
     <dimen name="recycler_item_line_height">1dp</dimen>
     <dimen name="recycler_item_line_margin_end">20dp</dimen>
     <dimen name="topMargin">15dp</dimen>
+    <dimen name="cardTextSize">16sp</dimen>
 </resources>
