@@ -34,7 +34,7 @@ class CitiesListFragment : Fragment() {
                 bundle.putParcelable(DetailedWeatherFragment.BUNDLE_KEY, weather)
 
                 manager.beginTransaction()
-                    .add(R.id.main_container, DetailedWeatherFragment.newInstance(bundle))
+                    .replace(R.id.main_container, DetailedWeatherFragment.newInstance(bundle))
                     .addToBackStack("")
                     .commit()
             }

@@ -12,7 +12,7 @@
         android:id="@+id/mainView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg_sunny">
+        android:background="@drawable/bg_day">
 
         <ImageView
             android:id="@+id/weatherConditionIcon"
