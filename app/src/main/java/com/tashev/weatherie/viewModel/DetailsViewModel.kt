@@ -20,7 +20,7 @@ class DetailsViewModel(
     private val historyRepositoryImpl: LocalRepositoryImpl = LocalRepositoryImpl(getHistoryDAO())
 ) : ViewModel() {
 
-    fun saveWeather(weather: Weather){
+    fun saveWeather(weather: Weather) {
         historyRepositoryImpl.saveEntity(weather)
     }
 
@@ -34,7 +34,7 @@ class DetailsViewModel(
     private val callback = object : Callback<WeatherDTO> {
         override fun onResponse(call: Call<WeatherDTO>, response: Response<WeatherDTO>) {
 
-            if (response.isSuccessful&&response.body()!=null){
+            if (response.isSuccessful && response.body() != null) {
                 val weatherDTO = response.body()
                 weatherDTO?.let {
                     detailsLiveDataToObserve.postValue(AppState.Success(convertDTOtoModel(weatherDTO)))

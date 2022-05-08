@@ -16,7 +16,8 @@ import com.tashev.weatherie.R
 import com.tashev.weatherie.dataSource.Weather
 import com.tashev.weatherie.dataSource.WeatherFact
 import com.tashev.weatherie.databinding.DetailedWeatherFragmentBinding
-import com.tashev.weatherie.repository.weatherLoaderAndDTO.*
+
+
 import com.tashev.weatherie.viewModel.AppState
 import com.tashev.weatherie.viewModel.DetailsViewModel
 
@@ -53,9 +54,9 @@ class DetailedWeatherFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getLiveData().observe(viewLifecycleOwner, {
+        viewModel.getLiveData().observe(viewLifecycleOwner) {
             renderData(it)
-        })
+        }
         getWeather()
     }
 
@@ -79,7 +80,7 @@ class DetailedWeatherFragment : Fragment() {
                 binding.loadingLayout.visibility = View.VISIBLE
             }
             is AppState.Error -> {
-                Snackbar.make(binding.root, R.string.error, Snackbar.LENGTH_LONG)
+                Snackbar.make(binding.root, R.string.error, Snackbar.LENGTH_LONG).show()
             }
         }
     }
@@ -149,7 +150,7 @@ class DetailedWeatherFragment : Fragment() {
         }
     }
 
-    fun getStringResourceByName(aString: String): String {
+    private fun getStringResourceByName(aString: String): String {
         var aStringChanged = aString
         if (aString.contains("-", true)) {
             aStringChanged = aString.replace("-", "_")
@@ -189,7 +190,7 @@ class DetailedWeatherFragment : Fragment() {
     }
 
     override fun onDestroy() {
-        super.onDestroy()
         _binding = null
+        super.onDestroy()
     }
 }

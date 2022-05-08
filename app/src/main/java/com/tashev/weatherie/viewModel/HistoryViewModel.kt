@@ -12,8 +12,21 @@ class HistoryViewModel(
 
     fun getAllHistory() {
         historyLiveDataToObserve.value = AppState.Loading
-        Thread{
+        Thread {
             historyLiveDataToObserve.postValue(AppState.Success(historyRepositoryImpl.getAllHistory()))
+        }.start()
+    }
+
+    fun getHistoryByCity(name: String) {
+        historyLiveDataToObserve.value = AppState.Loading
+        Thread {
+            historyLiveDataToObserve.postValue(
+                AppState.Success(
+                    historyRepositoryImpl.getHistoryByCity(
+                        name
+                    )
+                )
+            )
         }.start()
     }
 

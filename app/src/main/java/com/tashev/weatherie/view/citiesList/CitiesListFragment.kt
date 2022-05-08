@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import com.tashev.weatherie.R
@@ -33,10 +34,11 @@ class CitiesListFragment : Fragment() {
                 val bundle = Bundle()
                 bundle.putParcelable(DetailedWeatherFragment.BUNDLE_KEY, weather)
 
-                manager.beginTransaction()
-                    .replace(R.id.main_container, DetailedWeatherFragment.newInstance(bundle))
-                    .addToBackStack("")
-                    .commit()
+                manager.commit {
+                    setReorderingAllowed(true)
+                    replace(R.id.main_container, DetailedWeatherFragment.newInstance(bundle))
+                    addToBackStack("")
+                }
             }
         }
     })

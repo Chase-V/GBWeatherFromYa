@@ -7,7 +7,9 @@ import android.view.MenuItem
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.fragment.app.commit
 import com.tashev.weatherie.view.citiesList.CitiesListFragment
+import com.tashev.weatherie.view.contentProvider.ContentProviderFragment
 import com.tashev.weatherie.view.history.HistoryFragment
 
 class MainActivity : AppCompatActivity() {
@@ -37,8 +39,11 @@ class MainActivity : AppCompatActivity() {
             }
 
         if (savedInstanceState == null)
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.main_container, CitiesListFragment.newInstance()).commit()
+            supportFragmentManager.commit {
+                setReorderingAllowed(true)
+                add(R.id.main_container, CitiesListFragment.newInstance())
+            }
+
 
 
     }
@@ -53,6 +58,13 @@ class MainActivity : AppCompatActivity() {
             R.id.option_history ->{
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.main_container, HistoryFragment.newInstance())
+                    .addToBackStack("")
+                    .commit()
+                true
+            }
+            R.id.option_provider ->{
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.main_container, ContentProviderFragment.newInstance())
                     .addToBackStack("")
                     .commit()
                 true

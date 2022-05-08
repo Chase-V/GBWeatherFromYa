@@ -24,17 +24,17 @@ class MainViewModel(
 
     private fun simulateServerResponseWithRandomResult(isRussian: Boolean) {
         Thread {
-            sleep(800)
-            if (Random.nextInt(15) < 1) {
-                liveDataToObserve.postValue(AppState.Error(Exception("Не удалось загрузить данные о погоде")))
-            } else {
+//            sleep(200)
+//            if (Random.nextInt(15) < 1) {
+//                liveDataToObserve.postValue(AppState.Error(Exception("Не удалось загрузить данные о погоде")))
+//            } else {
                 liveDataToObserve.postValue(
                     AppState.Success(
                         if (isRussian) repositoryImpl.getWeatherFromLocalStorageRus()
                         else repositoryImpl.getWeatherFromLocalStorageWorld()
                     )
                 )
-            }
+//            }
         }.start()
     }
 }

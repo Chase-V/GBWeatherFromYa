@@ -5,5 +5,11 @@
     <item
         android:id="@+id/option_history"
         android:title="@string/option_history"
+        android:icon="@drawable/ic_baseline_history_24"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/option_provider"
+        android:title="@string/option_provider"
+        android:icon="@drawable/ic_baseline_perm_device_information_24"
+        app:showAsAction="ifRoom" />
 </menu>
