@@ -65,5 +65,7 @@
     <string name="someDate">01.01.21 00:00</string>
     <string name="option_history">History</string>
     <string name="ufa">Ufa</string>
+    <string name="option_provider">Content Provider</string>
+    <string name="filter">Filter</string>
 
 </resources>
