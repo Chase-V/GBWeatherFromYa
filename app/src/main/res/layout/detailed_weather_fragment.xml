@@ -44,6 +44,7 @@
                 android:layout_marginTop="@dimen/margin_15_dp"
                 android:text="@string/someCityName"
                 android:textSize="35sp"
+                android:textAlignment="center"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -21,7 +21,7 @@ import com.tashev.weatherie.databinding.DetailedWeatherFragmentBinding
 import com.tashev.weatherie.viewModel.AppState
 import com.tashev.weatherie.viewModel.DetailsViewModel
 
-class DetailedWeatherFragment : Fragment() {
+class DetailedWeatherFragment : Fragment(R.layout.detailed_weather_fragment) {
 
     companion object {
 
@@ -162,8 +162,8 @@ class DetailedWeatherFragment : Fragment() {
 
     private fun ImageView.loadImageFromUrl(imageUrl: String) {
         val imageLoader = ImageLoader.Builder(this.context)
-            .componentRegistry {
-                add(SvgDecoder(this@loadImageFromUrl.context))
+            .components {
+                add(SvgDecoder.Factory())
             }
             .build()
 

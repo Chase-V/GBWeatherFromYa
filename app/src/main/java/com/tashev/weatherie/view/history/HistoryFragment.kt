@@ -1,8 +1,6 @@
 package com.tashev.weatherie.view.history
 
-import android.opengl.Visibility
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,20 +9,12 @@ import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
-import com.tashev.weatherie.MyApp
 import com.tashev.weatherie.R
-import com.tashev.weatherie.dataSource.City
-import com.tashev.weatherie.dataSource.Weather
-import com.tashev.weatherie.dataSource.WeatherFact
-import com.tashev.weatherie.databinding.CitiesListFragmentBinding
 import com.tashev.weatherie.databinding.HistoryFragmentBinding
-import com.tashev.weatherie.databinding.HistoryFragmentRecyclerItemBinding
-import com.tashev.weatherie.repository.LocalRepositoryImpl
 import com.tashev.weatherie.viewModel.AppState
 import com.tashev.weatherie.viewModel.HistoryViewModel
-import com.tashev.weatherie.viewModel.MainViewModel
 
-class HistoryFragment : Fragment() {
+class HistoryFragment : Fragment(R.layout.history_fragment) {
 
     companion object {
         fun newInstance() = HistoryFragment()
@@ -36,7 +26,7 @@ class HistoryFragment : Fragment() {
     private val adapter: HistoryAdapter by lazy { HistoryAdapter() }
 
     private val viewModel: HistoryViewModel by lazy {
-        ViewModelProvider(this).get(HistoryViewModel::class.java)
+        ViewModelProvider(this)[HistoryViewModel::class.java]
     }
 
     override fun onCreateView(
@@ -55,10 +45,9 @@ class HistoryFragment : Fragment() {
             binding.historyFilterFAB.visibility = View.GONE
             val spinner = binding.historySpinner
 
-
             val list = adapter.getCities()
 
-            val adapterSpinner = ArrayAdapter<String>(
+            val adapterSpinner = ArrayAdapter(
                 requireContext(),
                 android.R.layout.simple_spinner_dropdown_item,
                 list.toTypedArray()
@@ -71,7 +60,7 @@ class HistoryFragment : Fragment() {
                 }
 
                 override fun onNothingSelected(p0: AdapterView<*>?) {
-
+                    viewModel.getAllHistory()
                 }
 
             }

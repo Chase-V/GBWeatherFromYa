@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="location">Location</string>
+    <string name="dialog_button_close">Close</string>
+    <string name="dialog_title_gps_turned_off">GPS is turned off</string>
+    <string name="dialog_title_no_gps">No access to geolocation</string>
+    <string name="dialog_message_no_gps">Allow access to geolocation if you want to know the weather in your current location</string>
+    <string name="dialog_message_last_location_unknown">Location unknown. Turn on GPS if you want to get the weather at the current address</string>
+    <string name="dialog_message_last_known_location">The last known location is shown. Turn on GPS if you want to update your location</string>
+    <string name="dialog_rationale_title">Access to geolocation</string>
+    <string name="dialog_rationale_give_access">Grant access</string>
+    <string name="dialog_rationale_decline">Refuse</string>
+    <string name="dialog_address_title">Your address</string>
+    <string name="dialog_rationale_message">Access to GPS data is required to provide the weather at your current address</string>
+    <string name="dialog_address_get_weather">Check the weather</string>
+</resources>

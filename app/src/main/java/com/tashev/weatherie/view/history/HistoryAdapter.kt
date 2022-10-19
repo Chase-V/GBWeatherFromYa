@@ -14,7 +14,7 @@ class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() 
     private var weatherData: List<Weather> = listOf()
 
     fun setWeather(data: List<Weather>) {
-        weatherData = data
+        weatherData = data.reversed()
         notifyDataSetChanged()
     }
 

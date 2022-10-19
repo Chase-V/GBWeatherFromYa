@@ -14,38 +14,33 @@ import com.tashev.weatherie.view.history.HistoryFragment
 
 class MainActivity : AppCompatActivity() {
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
 
-            val mainContainer: FrameLayout = findViewById(R.id.main_container)
+        val mainContainer: FrameLayout = findViewById(R.id.main_container)
 
-            when (applicationContext.resources?.configuration?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK)) {
-                Configuration.UI_MODE_NIGHT_YES -> {
-                    mainContainer.background =
-                        AppCompatResources.getDrawable(applicationContext, R.drawable.bg_night)
-                }
-                Configuration.UI_MODE_NIGHT_NO -> {
-                    mainContainer.background =
-                        AppCompatResources.getDrawable(applicationContext, R.drawable.bg_day)
-                }
-                Configuration.UI_MODE_NIGHT_UNDEFINED -> {
-                    mainContainer.background =
-                        AppCompatResources.getDrawable(applicationContext, R.drawable.bg_day)
-                }
+        when (applicationContext.resources?.configuration?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK)) {
+            Configuration.UI_MODE_NIGHT_YES -> {
+                mainContainer.background =
+                    AppCompatResources.getDrawable(applicationContext, R.drawable.bg_night)
             }
+            Configuration.UI_MODE_NIGHT_NO -> {
+                mainContainer.background =
+                    AppCompatResources.getDrawable(applicationContext, R.drawable.bg_day)
+            }
+            Configuration.UI_MODE_NIGHT_UNDEFINED -> {
+                mainContainer.background =
+                    AppCompatResources.getDrawable(applicationContext, R.drawable.bg_day)
+            }
+        }
 
         if (savedInstanceState == null)
             supportFragmentManager.commit {
                 setReorderingAllowed(true)
                 add(R.id.main_container, CitiesListFragment.newInstance())
             }
-
-
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -54,15 +49,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId){
-            R.id.option_history ->{
+        return when (item.itemId) {
+            R.id.option_history -> {
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.main_container, HistoryFragment.newInstance())
                     .addToBackStack("")
                     .commit()
                 true
             }
-            R.id.option_provider ->{
+            R.id.option_provider -> {
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.main_container, ContentProviderFragment.newInstance())
                     .addToBackStack("")
